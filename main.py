@@ -3,10 +3,8 @@
 Copyright (C) 2025.
 """
 
-# Install dependencies as needed:
-# pip install kagglehub[pandas-datasets]
 import kagglehub
-from kagglehub import KaggleDatasetAdapter
+import pandas as pd
 
 
 def load_dataset() -> None:
@@ -17,13 +15,20 @@ def load_dataset() -> None:
     )
 
     # Load the latest version
-    df = kagglehub.dataset_load(
-        KaggleDatasetAdapter.PANDAS,
+    df: pd.DataFrame = kagglehub.dataset_load(  # pyright: ignore[reportAttributeAccessIssue, reportUnknownVariableType, reportUnknownMemberType]
+        kagglehub.KaggleDatasetAdapter.PANDAS,  # pyright: ignore[reportAttributeAccessIssue, reportUnknownMemberType]
         "ikjotsingh221/obesity-risk-prediction-cleaned",
         file_path,
     )
 
+    contingency_table: pd.DataFrame = pd.crosstab(
+        df.family_history_with_overweight,
+        df.NObeyesdad,
+    )
+
     print("First 5 records:", df.head())
+    print(df.columns.values)
+    print(contingency_table)
 
 
 def main() -> None:
