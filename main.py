@@ -38,13 +38,16 @@ def get_obesity_level_str(level: int) -> str:
     return levels[level]
 
 
-def plot_contingency(df: pd.DataFrame) -> None:
-    """Create a contingency table and plot different visualizations."""
+def clean_dataset(df: pd.DataFrame) -> None:
+    """Clean up the dataset for contingency visualization."""
     # Remap so that the labels are clear
     df["family_history_with_overweight"] = df.family_history_with_overweight.map(
         {0: "No", 1: "Yes"},
     )
 
+
+def plot_contingency(df: pd.DataFrame) -> None:
+    """Create a contingency table and plot different visualizations."""
     contingency_table: pd.DataFrame = pd.crosstab(
         df.family_history_with_overweight,
         df.NObeyesdad,
@@ -71,9 +74,14 @@ def plot_heatmap(df: pd.DataFrame) -> None:
         df.family_history_with_overweight,
         df.NObeyesdad,
     )
+    df.columns = [get_obesity_level_str(int(x)) for x in df.columns]
 
-    sns.heatmap(df)
+    sns.heatmap(df, annot=True, fmt="d", cmap="Blues")
+    plt.xlabel("Obesity level")
+    plt.ylabel("Family history")
+    plt.tight_layout()
     plt.savefig(HEATMAP_PLOT_PATH)
+
 
 def load_dataset() -> None:
     """Load the dataset from kaggle."""
@@ -89,6 +97,7 @@ def load_dataset() -> None:
         file_path,
     )
 
+    clean_dataset(df)
     plot_heatmap(df)
     plot_contingency(df)
 
