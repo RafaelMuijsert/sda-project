@@ -11,3 +11,6 @@ devenv.local.yaml
 
 # type stubs
 typings/
+
+# results
+results/

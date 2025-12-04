@@ -4,7 +4,76 @@ Copyright (C) 2025.
 """
 
 import kagglehub
+import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
+
+CONTINGENCY_PLOT_PATH = "results/contingency.png"
+HEATMAP_PLOT_PATH = "results/heatmap.png"
+
+
+def get_obesity_level_str(level: int) -> str:
+    """Get the obesity level from an integer 0-6 as a readable string.
+
+    Raises:
+        ValueError: if the provided level is not a valid obesity level.
+
+    Returns:
+        str: the obesity level as a readable string.
+
+    """
+    levels: dict[int, str] = {
+        0: "Underweight",
+        1: "Normal Weight",
+        2: "Overweight level 1",
+        3: "Overweight level 2",
+        4: "Obesity type 1",
+        5: "Obesity type 2",
+        6: "Obesity type 3",
+    }
+    if level not in levels:
+        error = "Invalid obesity level"
+        raise ValueError(error)
+
+    return levels[level]
+
+
+def plot_contingency(df: pd.DataFrame) -> None:
+    """Create a contingency table and plot different visualizations."""
+    # Remap so that the labels are clear
+    df["family_history_with_overweight"] = df.family_history_with_overweight.map(
+        {0: "No", 1: "Yes"},
+    )
+
+    contingency_table: pd.DataFrame = pd.crosstab(
+        df.family_history_with_overweight,
+        df.NObeyesdad,
+    )
+
+    contingency_table.plot(kind="bar", figsize=(10, 6))
+    codes = contingency_table.columns.tolist()
+
+    plt.xlabel("Family History of Overweight")
+    plt.ylabel("Count")
+    plt.legend(
+        [get_obesity_level_str(code) for code in codes],
+        title="Obesity Level",
+    )
+    plt.plot()
+
+    plt.savefig(CONTINGENCY_PLOT_PATH)
+
+
+def plot_heatmap(df: pd.DataFrame) -> None:
+    """Plot a heatmap."""
+    # Heatmap
+    df = pd.crosstab(
+        df.family_history_with_overweight,
+        df.NObeyesdad,
+    )
+
+    sns.heatmap(df)
+    plt.savefig(HEATMAP_PLOT_PATH)
 
 def load_dataset() -> None:
     """Load the dataset from kaggle."""
@@ -20,14 +89,8 @@ def load_dataset() -> None:
         file_path,
     )
 
-    contingency_table: pd.DataFrame = pd.crosstab(
-        df.family_history_with_overweight,
-        df.NObeyesdad,
-    )
-
-    print("First 5 records:", df.head())
-    print(df.columns.values)
-    print(contingency_table)
+    plot_heatmap(df)
+    plot_contingency(df)
 
 
 def main() -> None:
