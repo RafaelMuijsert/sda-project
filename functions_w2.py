@@ -2,7 +2,8 @@ from scipy.stats import chi2_contingency
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('../data/obesity_cleaned_final.csv')
+# Verify the file path is correct
+df = pd.read_csv('obesity_cleaned_final.csv')
 
 def contingency_table(var1, var2) -> tuple[pd.DataFrame, pd.DataFrame]:
     ct = pd.crosstab(var1, var2)
