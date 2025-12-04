@@ -6,7 +6,6 @@ Copyright (C) 2025.
 import kagglehub
 import pandas as pd
 
-
 def load_dataset() -> None:
     """Load the dataset from kaggle."""
     # Set the path to the file you'd like to load
