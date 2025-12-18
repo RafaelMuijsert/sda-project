@@ -5,7 +5,7 @@ from statsmodels.miscmodels.ordinal_model import OrderedModel
 
 
 def read_data(filename):
-    df = pd.read_csv(filename, sep=';')
+    df = pd.read_csv(filename, sep=";")
     return df
 
 
@@ -31,14 +31,11 @@ def prepare_for_ordinal_regression(df):
 
 
 def run_ordinal_logistic_regression(X, y):
-    model = OrderedModel(
-        y,
-        X,
-        distr="logit"
-    )
+    model = OrderedModel(y, X, distr="logit")
 
     result = model.fit(method="bfgs")
     return result
+
 
 def main():
     filename = "obesity_cleaned_final.csv"
@@ -49,9 +46,7 @@ def main():
 
     result = run_ordinal_logistic_regression(X, y)
 
-
     print(result.summary())
-
 
 
 if __name__ == "__main__":
