@@ -1,7 +1,7 @@
 import pandas as pd
 from statsmodels.miscmodels.ordinal_model import OrderedModel
 
-DATASET_PATH = "data/ObesityDataSet_raw_and_data_sinthetic.csv"
+DATASET_PATH = "data/obesity_cleaned_final.csv"
 
 
 def read_data(filename):
