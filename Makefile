@@ -9,7 +9,7 @@ reproduce:
 	python src/binary_logistic_regression.py
 
 clean:
-	rm -f figures/*.png
+	rm -f results/*.png
 
 all: reproduce
 	
