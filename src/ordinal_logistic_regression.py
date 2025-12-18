@@ -1,7 +1,7 @@
-import csv
-import numpy as np
 import pandas as pd
 from statsmodels.miscmodels.ordinal_model import OrderedModel
+
+DATASET_PATH = "data/ObesityDataSet_raw_and_data_sinthetic.csv"
 
 
 def read_data(filename):
@@ -38,9 +38,7 @@ def run_ordinal_logistic_regression(X, y):
 
 
 def main():
-    filename = "obesity_cleaned_final.csv"
-
-    df = read_data(filename)
+    df = read_data(DATASET_PATH)
 
     X, y = prepare_for_ordinal_regression(df)
 
