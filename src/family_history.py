@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_csv("../data/ObesityDataSet_raw_and_data_sinthetic.csv")
+df = pd.read_csv("data/ObesityDataSet_raw_and_data_sinthetic.csv")
 df = df.rename(columns={"NObeyesdad": "obesity level"})
 crosstab_table = pd.crosstab(df["family_history_with_overweight"], df["obesity level"])
 crosstab_table.index = ["No family history", "Has family history"]
@@ -22,5 +22,4 @@ ax.set_ylabel("Number of participants")
 ax.set_title("Obesity vs. family history of overweight")
 plt.xticks(rotation=20)
 plt.tight_layout()
-plt.savefig("figures/family_history_vs_obesity.png", dpi=300)
-plt.show()
+plt.savefig("results/family_history_vs_obesity.png")

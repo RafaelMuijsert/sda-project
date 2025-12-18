@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 
 plt.ion()
-df = pd.read_csv("../data/ObesityDataSet_raw_and_data_sinthetic.csv")
+df = pd.read_csv("data/ObesityDataSet_raw_and_data_sinthetic.csv")
 
 df = df.rename(columns={"NObeyesdad": "obesity_level"})
 lifestyle_vars = ["FAF", "FCVC", "TUE", "CALC", "CH2O"]
@@ -22,5 +22,4 @@ for var in lifestyle_vars:
     plt.xlabel("Obesity level")
     plt.ylabel(titles[var])
     plt.tight_layout()
-    plt.savefig(f"figures/Lifestyle_{var}.png", dpi=300)
-    plt.show()
+    plt.savefig(f"results/lifestyle_{var}.png")

@@ -3,7 +3,6 @@
 Copyright (C) 2025.
 """
 
-import matplotlib.pyplot as plt
 import pandas as pd
 import statsmodels.api as sm
 
@@ -36,7 +35,6 @@ def main() -> None:
     x = sm.add_constant(x)
     y = df["obesity_binary"]
     model = sm.Logit(y, x).fit()
-    plt.show()
 
     print(model.summary())
 
