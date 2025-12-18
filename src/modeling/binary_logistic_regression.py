@@ -5,6 +5,7 @@ Copyright (C) 2025.
 
 import pandas as pd
 import statsmodels.api as sm
+from statsmodels.discrete.discrete_model import LogitResults
 
 DATASET_PATH = "data/obesity_cleaned_final.csv"
 
@@ -62,7 +63,7 @@ def prepare_for_binary_regression(
 def run_binary_logistic_regression(
     x: pd.DataFrame,
     y: pd.DataFrame,
-) -> sm.Logit:
+) -> LogitResults:
     """Run binary logistic regression on the given target and predictors.
 
     Returns:
