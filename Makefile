@@ -1,12 +1,13 @@
 .PHONY: reproduce clean
 
 reproduce:
-	python src/family_history.py
-	python src/lifestyle.py
-	python src/contingency_heatmap.py
-	# python src/chi_square.py
-	python src/ordinal_logistic_regression.py
-	python src/binary_logistic_regression.py
+	python src/data_preparation/prepare_data.py
+	python src/exploratory_analysis/family_history.py
+	python src/exploratory_analysis/lifestyle.py
+	python src/exploratory_analysis/contingency_heatmap.py
+	python src/modeling/chi_square.py
+	python src/modeling/ordinal_logistic_regression.py
+	python src/modeling/binary_logistic_regression.py
 
 clean:
 	rm -f results/*.png

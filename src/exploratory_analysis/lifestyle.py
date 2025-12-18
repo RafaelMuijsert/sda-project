@@ -3,9 +3,8 @@ import pandas as pd
 import seaborn as sns
 
 plt.ion()
-df = pd.read_csv("data/ObesityDataSet_raw_and_data_sinthetic.csv")
+df = pd.read_csv("data/obesity_cleaned_final.csv", sep=";")
 
-df = df.rename(columns={"NObeyesdad": "obesity_level"})
 lifestyle_vars = ["FAF", "FCVC", "TUE", "CALC", "CH2O"]
 titles = {
     "FAF": "Physical activity",
@@ -17,9 +16,10 @@ titles = {
 
 for var in lifestyle_vars:
     plt.figure(figsize=(10, 6))
-    sns.boxplot(x="obesity_level", y=var, data=df)
-    plt.title(f"{titles[var]} vs Obesity level")
-    plt.xlabel("Obesity level")
+    sns.boxplot(x="Obesity_Category", y=var, data=df)
+    plt.title(f"{titles[var]} vs Obesity Category")
+    plt.xlabel("Obesity Category")
     plt.ylabel(titles[var])
+    plt.xticks(rotation=20)
     plt.tight_layout()
     plt.savefig(f"results/lifestyle_{var}.png")

@@ -39,12 +39,23 @@ def prepare_for_ordinal_regression(
         [
             "Gender",
             "Age",
+            "Height",
+            "Weight",
+            "family_history_with_overweight",
+            "FAVC",
+            "FCVC",
+            "NCP",
+            "CAEC",
+            "SMOKE",
+            "CH2O",
+            "SCC",
+            "FAF",
+            "TUE",
             "CALC",
             "MTRANS_Automobile",
             "MTRANS_Bike",
             "MTRANS_Motorbike",
             "MTRANS_Public_Transportation",
-            # MTRANS_Walking is DROPPED (baseline) because it made the sum of MTRANS=1
         ]
     ]
 
