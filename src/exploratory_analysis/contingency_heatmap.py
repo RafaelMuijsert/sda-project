@@ -56,8 +56,8 @@ def plot_heatmap(df: pd.DataFrame) -> None:
 def main() -> None:
     """Load dataset and perform experiments."""
     df = pd.read_csv("data/obesity_cleaned_final.csv", sep=";")
-    plot_heatmap(df.copy()) # Use a copy to avoid modifying the original df for the next plot
-    plot_contingency(df.copy()) # Use a copy to avoid modifying the original df for the next plot
+    plot_heatmap(df.copy())
+    plot_contingency(df.copy())
 
 
 if __name__ == "__main__":

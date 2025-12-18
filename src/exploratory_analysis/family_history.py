@@ -1,8 +1,13 @@
+"""Generate a plot of obesity vs. family history of overweight."""
+
 import matplotlib.pyplot as plt
 import pandas as pd
 
 df = pd.read_csv("data/obesity_cleaned_final.csv", sep=";")
-crosstab_table = pd.crosstab(df["family_history_with_overweight"], df["Obesity_Category"])
+crosstab_table = pd.crosstab(
+    df["family_history_with_overweight"],
+    df["Obesity_Category"],
+)
 crosstab_table.index = ["No family history", "Has family history"]
 crosstab_table.columns = [
     "Insufficient Weight",
@@ -14,7 +19,6 @@ crosstab_table.columns = [
     "Obesity III",
 ]
 
-print(crosstab_table)
 ax = crosstab_table.T.plot(kind="bar")
 ax.set_xlabel("Obesity Level")
 ax.set_ylabel("Number of participants")

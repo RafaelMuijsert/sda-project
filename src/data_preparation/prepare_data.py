@@ -1,3 +1,5 @@
+"""Functions for cleaning and preparing the obesity dataset."""
+
 import pandas as pd
 
 RAW_DATA_PATH = "data/ObesityDataSet_raw_and_data_sinthetic.csv"
@@ -12,24 +14,33 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
 
     Returns:
         pd.DataFrame: The cleaned and preprocessed DataFrame.
+
     """
     # Rename 'NObeyesdad' for clarity and consistency
     df = df.rename(columns={"NObeyesdad": "Obesity_Category"})
 
     # Map categorical features to numerical
     df["Gender"] = df["Gender"].map({"Male": 1, "Female": 0}).astype(int)
-    df["family_history_with_overweight"] = df[
-        "family_history_with_overweight"
-    ].map({"yes": 1, "no": 0}).astype(int)
+    df["family_history_with_overweight"] = (
+        df["family_history_with_overweight"].map({"yes": 1, "no": 0}).astype(int)
+    )
     df["FAVC"] = df["FAVC"].map({"yes": 1, "no": 0}).astype(int)
     df["SMOKE"] = df["SMOKE"].map({"yes": 1, "no": 0}).astype(int)
     df["SCC"] = df["SCC"].map({"yes": 1, "no": 0}).astype(int)
-    df["CALC"] = df["CALC"].map(
-        {"no": 0, "Sometimes": 1, "Frequently": 2, "Always": 3},
-    ).astype(int)
-    df["CAEC"] = df["CAEC"].map(
-        {"no": 0, "Sometimes": 1, "Frequently": 2, "Always": 3},
-    ).astype(int)
+    df["CALC"] = (
+        df["CALC"]
+        .map(
+            {"no": 0, "Sometimes": 1, "Frequently": 2, "Always": 3},
+        )
+        .astype(int)
+    )
+    df["CAEC"] = (
+        df["CAEC"]
+        .map(
+            {"no": 0, "Sometimes": 1, "Frequently": 2, "Always": 3},
+        )
+        .astype(int)
+    )
 
     # One-hot encode 'MTRANS' and convert to int
     df = pd.get_dummies(df, columns=["MTRANS"], prefix="MTRANS", dtype=int)
@@ -49,15 +60,11 @@ def clean_data(df: pd.DataFrame) -> pd.DataFrame:
     # Create 'Obese_Binary' column (1 if obese/overweight, 0 otherwise)
     # Fix: Only classify 'Normal_Weight' and 'Insufficient_Weight' as 0
     df["Obese_Binary"] = df["Obesity_Category"].apply(
-        lambda x: 0
-        if x in ["Normal_Weight", "Insufficient_Weight"]
-        else 1,
+        lambda x: 0 if x in ["Normal_Weight", "Insufficient_Weight"] else 1,
     )
 
     # Handle missing values (if any) - drop rows with any NaN values
-    df = df.dropna()
-
-    return df
+    return df.dropna()
 
 
 def main() -> None:
