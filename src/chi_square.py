@@ -134,17 +134,18 @@ def chi_square_test(var1, var2) -> tuple[float, float, int, np.ndarray]:
 def main() -> None:
     df = load_dataset()
     chi2, p, dof, ex = chi_square_test(
-        df["family_history_with_overweight"], df["Obese_Binary"]
+        df["family_history_with_overweight"],
+        df["Obese_Binary"],
     )
     print("\nChi-square test between family_history_with_overweight and Obese_Binary:")
     print(
-        f"Chi2 Statistic: {chi2}, p-value: {p:.2f}, Degrees of Freedom: {dof}, Expected Frequencies:\n{ex}"
+        f"Chi2 Statistic: {chi2}, p-value: {p:.2f}, Degrees of Freedom: {dof}, Expected Frequencies:\n{ex}",
     )
 
     chi2, p, dof, ex = chi_square_test(df["FAVC"], df["Obese_Binary"])
     print("\nChi-square test between family_history_with_overweight and Obese_Binary:")
     print(
-        f"Chi2 Statistic: {chi2}, p-value: {p:.2f}, Degrees of Freedom: {dof}, Expected Frequencies:\n{ex}"
+        f"Chi2 Statistic: {chi2}, p-value: {p:.2f}, Degrees of Freedom: {dof}, Expected Frequencies:\n{ex}",
     )
 
 
