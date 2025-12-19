@@ -41,10 +41,6 @@ def prepare_for_ordinal_regression(
     # Predictors
     x: pd.DataFrame = df[
         [
-            "Gender",
-            "Age",
-            "Height",
-            "Weight",
             "family_history_with_overweight",
             "FAVC",
             "FCVC",
