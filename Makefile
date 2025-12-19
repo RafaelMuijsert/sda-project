@@ -6,8 +6,9 @@ reproduce:
 	python src/exploratory_analysis/lifestyle.py
 	python src/exploratory_analysis/contingency_heatmap.py
 	python src/modeling/chi_square.py
-	python src/modeling/ordinal_logistic_regression.py
 	python src/modeling/binary_logistic_regression.py
+	python src/modeling/compare_hereditary_lifestyle.py
+	python src/modeling/interaction_model.py
 
 clean:
 	rm -f results/*.png

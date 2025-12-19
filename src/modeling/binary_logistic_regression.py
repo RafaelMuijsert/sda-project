@@ -3,6 +3,8 @@
 Copyright (C) 2025.
 """
 
+from pathlib import Path
+
 import pandas as pd
 import statsmodels.api as sm
 from statsmodels.discrete.discrete_model import LogitResults
@@ -84,7 +86,8 @@ def main() -> None:
 
     result = run_binary_logistic_regression(x, y)
 
-    print(result.summary())  # noqa: T201
+    with Path("results/binary_logistic_regression_summary.txt").open("w") as f:
+        f.write(result.summary().as_text())
 
 
 if __name__ == "__main__":
