@@ -1,0 +1,5 @@
+Variable,Test,Statistic,p-value,p_formatted,Signif.,Mean (Non-Obese),Mean (Obese),Median (Non-Obese),Median (Obese),df,Min Expected
+SCC,Chi-Square,74.527,5.982585957020448e-18,5.983e-18,***,,,,,1.0,44.71
+FAF,Mann-Whitney U,623553.0,2.3026586921916346e-09,2.303e-09,***,1.133,0.875,1.0,0.903,,
+CH2O,Mann-Whitney U,462007.0,4.9232827570074254e-09,4.923e-09,***,1.946,2.073,2.0,2.08,,
+TUE,Mann-Whitney U,587964.5,0.0007004422998437145,7.004e-04,***,0.715,0.603,0.8,0.553,,
