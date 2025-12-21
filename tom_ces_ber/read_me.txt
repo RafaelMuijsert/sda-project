@@ -1,6 +1,6 @@
 READ ME - TOMMASO BERTONASCO ,  14885808
 
--------- clean_dataset.py -------- 
+-------- clean_dataset.py --------
 The raw Obesity Dataset is loaded and cleaned (duplicates are removed, numeric values are rounded, categorical/binary variables are encoded) using this script.  
 
 The useful target columns are created: ordered Obesity_Level (0-6) and binary Obese_Binary (obese vs non-obese).  
